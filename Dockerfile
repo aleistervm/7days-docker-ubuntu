@@ -48,7 +48,7 @@ USER ${ftp_username}
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
 
 # Install 7 Days to Die
-RUN ${server_folder}/steamcmd.sh +login anonymous +force_install_dir ${days7_folder} +app_update 294420 validate +quit
+RUN ${server_folder}/steamcmd.sh +force_install_dir ${days7_folder} +login anonymous +app_update 294420 validate +quit
 
 # Expose game ports
 EXPOSE 26900-26903/tcp
