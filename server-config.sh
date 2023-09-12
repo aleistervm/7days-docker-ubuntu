@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Here is basic configuration for an Ubuntu 22.04 server.
 # 1. Install docker
 # 2. Setup a swap file

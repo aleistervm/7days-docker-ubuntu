@@ -23,7 +23,7 @@ docker build -t 7days-server:latest .
 Run the docker container with a volume. <br/>
 NOTE: The `/gameserver` below must match the `server_folder` defined in the `Dockerfile`.
 ```
-docker run -itd --name 7days-server \
+docker run -d --name 7days-server \
   -p 26900-26903:26900-26903/tcp \
   -p 26900-26903:26900-26903/udp \
   -p 8080-8082:8080-8082/tcp \
@@ -31,6 +31,12 @@ docker run -itd --name 7days-server \
   -p 40000-50000:40000-50000/tcp \
   -v my_7days_server:/gameserver \
   7days-server:latest
+```
+
+### Optional: Check on the container
+If you need to connect to the container, use the following command:
+```
+docker exec -it 7days-server /bin/bash
 ```
 
 

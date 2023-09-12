@@ -47,9 +47,6 @@ USER ${ftp_username}
 # Install SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
 
-# Install 7 Days to Die
-RUN ${server_folder}/steamcmd.sh +force_install_dir ${days7_folder} +login anonymous +app_update 294420 validate +quit
-
 # Expose game ports
 EXPOSE 26900-26903/tcp
 EXPOSE 26900-26903/udp
@@ -60,10 +57,10 @@ EXPOSE 20-21/tcp
 EXPOSE 40000-50000/tcp
 
 # Set the working directory to the server directory
-WORKDIR ${days7_folder}
+WORKDIR ${server_folder}
 
 # Copy serverconfig.xml
 COPY /config/serverconfig.xml ./serverconfig.xml
 
 # Start the 7 Days to Die server with the desired command
-CMD ["./startserver.sh", "-configfile=serverconfig.xml"]
+CMD ["./install_7days.sh"]
