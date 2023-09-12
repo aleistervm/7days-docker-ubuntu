@@ -9,21 +9,21 @@
 ### Create the Docker volume
 The Docker volume will contain your server's data and saved game.
 ```
-docker volume create my_7days_server
+sudo docker volume create my_7days_server
 ```
 
 ### Build
 Build the docker image.<br/>
 This line must be run in the folder where the Dockerfile is located.
 ```
-docker build -t 7days-server:latest .
+sudo docker build -t 7days-server:latest .
 ```
 
 ### Run
 Run the docker container with a volume. <br/>
 NOTE: The `/gameserver` below must match the `server_folder` defined in the `Dockerfile`.
 ```
-docker run -d --name 7days-server \
+sudo docker run -d --name 7days-server \
   -p 26900-26903:26900-26903/tcp \
   -p 26900-26903:26900-26903/udp \
   -p 8080-8082:8080-8082/tcp \
@@ -36,7 +36,7 @@ docker run -d --name 7days-server \
 ### Optional: Check on the container
 If you need to connect to the container, use the following command:
 ```
-docker exec -it 7days-server /bin/bash
+sudo docker exec -it 7days-server /bin/bash
 ```
 
 

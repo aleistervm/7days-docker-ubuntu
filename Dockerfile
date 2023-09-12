@@ -64,4 +64,4 @@ COPY /config/serverconfig.xml ./serverconfig.xml
 COPY /install_7days.sh ./install_7days.sh
 
 # Start the 7 Days to Die server with the desired command
-CMD ["screen", "-dmS", "7days-server", "./install_7days.sh"]
+CMD ["./install_7days.sh"]
