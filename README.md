@@ -23,7 +23,7 @@ sudo docker build -t 7days-server:latest .
 Run the docker container with a volume. <br/>
 NOTE: The `/gameserver` below must match the `server_folder` defined in the `Dockerfile`.
 ```
-sudo docker run -d --name 7days-server \
+sudo docker run -it --name 7days-server \
   -p 26900-26903:26900-26903/tcp \
   -p 26900-26903:26900-26903/udp \
   -p 8080-8082:8080-8082/tcp \

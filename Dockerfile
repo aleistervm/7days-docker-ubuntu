@@ -19,7 +19,7 @@ ENV server_folder /gameserver
 ENV days7_folder /gameserver/7days
 
 RUN apt-get update
-RUN apt-get install -y screen nano curl wget
+RUN apt-get install -y screen nano curl wget git bzip2 gzip unzip
 
 # Install networking tools
 RUN apt-get install -y vsftpd
@@ -33,7 +33,7 @@ RUN echo "${ftp_username}:${ftp_password}" | chpasswd
 # Install libraries required by game
 RUN dpkg --add-architecture i386 && \
     apt update && \
-    apt install -y lib32gcc-s1 libsdl2-2.0-0:i386
+    apt install -y lib32gcc-s1 lib32stdc++6 libstdc++6 libstdc++6:i386 libsdl2-2.0-0:i386
 
 # Create the server folder
 RUN mkdir -p ${days7_folder}
@@ -64,6 +64,8 @@ WORKDIR ${server_folder}
 
 # Copy serverconfig.xml
 COPY /config/serverconfig.xml ./serverconfig.xml
+COPY d7_user.sh ./d7_user.sh
+COPY d7_server_install.sh ./d7_server_install.sh
 
-# Start the 7 Days to Die server with the desired command
-CMD ["./startserver.sh", "-configfile=serverconfig.xml"]
+# Prompt for user input
+CMD ["./d7_user.sh"]
