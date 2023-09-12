@@ -16,7 +16,7 @@ ENV ftp_username ftpuser
 ENV ftp_password password
 
 ENV server_folder /gameserver
-ENV 7days_folder /gameserver/7days
+ENV days7_folder /gameserver/7days
 
 RUN apt-get update
 RUN apt-get install -y screen nano wget
@@ -39,13 +39,13 @@ RUN dpkg --add-architecture i386 && \
 USER ${ftp_username}
 
 # Create the server folder
-RUN mkdir -p ${7days_folder}
+RUN mkdir -p ${days7_folder}
 
 # Install SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
 
 # Install 7 Days to Die
-RUN ${server_folder}/steamcmd.sh +login anonymous +force_install_dir ${7days_folder} +app_update 294420 validate +quit
+RUN ${server_folder}/steamcmd.sh +login anonymous +force_install_dir ${days7_folder} +app_update 294420 validate +quit
 
 # Expose game ports
 EXPOSE 26900-26903/tcp
@@ -57,7 +57,7 @@ EXPOSE 20-21/tcp
 EXPOSE 40000-50000/tcp
 
 # Set the working directory to the server directory
-WORKDIR ${7days_folder}
+WORKDIR ${days7_folder}
 
 # Copy serverconfig.xml
 COPY /config/serverconfig.xml ./serverconfig.xml
