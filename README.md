@@ -17,7 +17,8 @@ docker volume create my_7days_server
 <br/>
 
 ### Build
-Build the docker image:
+Build the docker image.<br/>
+This line must be run in the folder where the Dockerfile is located.
 ```
 docker build -t 7days-server:latest .
 ```
@@ -25,7 +26,7 @@ docker build -t 7days-server:latest .
 
 ### Run
 Run the docker container with a volume. <br/>
-NOTE: The /gameserver below must match the `server_folder` defined in the `Dockerfile`.
+NOTE: The `/gameserver` below must match the `server_folder` defined in the `Dockerfile`.
 ```
 docker run -itd --name 7days-server \
   -p 26900-26903:26900-26903/tcp \
