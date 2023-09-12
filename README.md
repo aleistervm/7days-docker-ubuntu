@@ -4,7 +4,6 @@
 1. The Dockerfile creates a fresh 7 Days to Die server and stores the game save in a Docker `volume`.
 2. An FTP server is also setup so you can upload files/mods to the 7 Days server.
 <br/>
-<br/>
 
 ### Basics
 Run the following commands in the same directory as the Dockerfile.
