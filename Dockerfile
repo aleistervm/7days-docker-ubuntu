@@ -59,8 +59,9 @@ EXPOSE 40000-50000/tcp
 # Set the working directory to the server directory
 WORKDIR ${server_folder}
 
-# Copy serverconfig.xml
+# Copy files
 COPY /config/serverconfig.xml ./serverconfig.xml
+COPY /install_7days.sh ./install_7days.sh
 
 # Start the 7 Days to Die server with the desired command
-CMD ["./install_7days.sh"]
+CMD ["screen", "-dmS", "7days-server", "./install_7days.sh"]
