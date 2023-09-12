@@ -7,9 +7,6 @@ LABEL description="7 Days to Die Dedicated Server"
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Update Ubuntu Software repository
-RUN apt update
-
 ENV vsftpd_conf /etc/vsftpd.conf
 
 ENV ftp_username ftpuser
@@ -18,11 +15,14 @@ ENV ftp_password password
 ENV server_folder /gameserver
 ENV days7_folder /gameserver/7days
 
-RUN apt-get update
-RUN apt-get install -y screen nano curl wget
+# Update Ubuntu Software repository
+RUN apt update
+
+# Install base software
+RUN apt install -y screen nano curl wget
 
 # Install networking tools
-RUN apt-get install -y vsftpd
+RUN apt install -y vsftpd
 COPY /config/vsftpd.conf /etc/vsftpd.conf
 
 # Add FTP user
