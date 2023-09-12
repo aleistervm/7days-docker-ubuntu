@@ -1,0 +1,18 @@
+# IDE
+.vs/
+.idea/
+
+# Mac
+.DS_Store
+
+# Node
+node_modules/
+
+# Git
+.git
+.gitignore
+.github
+.gitattributes
+
+# Readme
+README.md
