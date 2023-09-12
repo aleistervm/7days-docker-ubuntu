@@ -1,6 +1,7 @@
 services:
   7days-server:
     image: 7days-server:latest
+    container_name: 7days-server
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     build:
