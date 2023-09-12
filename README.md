@@ -56,7 +56,7 @@ If hosting on a Windows device, be sure to open the ports in Windows firewall.<b
 https://www.tomshardware.com/news/how-to-open-firewall-ports-in-windows-10,36451.html
 
 ### Ubuntu firewall
-Ubuntu's firewall configuration tool, `ufw`, it _not_ enabled by default. However, if you want to enable it,
+Ubuntu's firewall configuration tool, `ufw`, is _not_ enabled by default. However, if you want to enable it,
 you can do so with the following command:
 ```
 sudo ufw enable
@@ -82,7 +82,7 @@ Yes. This server will run on any OS that can run Docker.
 <br/>
 
 ### C. How do I setup an Ubuntu 22.04 server with Docker?
-Check out `server-config.sh`. Everything you need to run the 7 Days docker image on an Ubuntu machine is included.
+Check out `server-config.sh`. Everything you need to run the 7 Days Dedicated Server docker image on an Ubuntu machine is included.
 <br/>
 
 ### D. How do I backup my save game?
