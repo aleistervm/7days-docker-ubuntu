@@ -7,6 +7,9 @@ LABEL description="7 Days to Die Dedicated Server"
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Update Ubuntu Software repository
+RUN apt update
+
 ENV vsftpd_conf /etc/vsftpd.conf
 
 ENV ftp_username ftpuser
@@ -15,14 +18,11 @@ ENV ftp_password password
 ENV server_folder /gameserver
 ENV days7_folder /gameserver/7days
 
-# Update Ubuntu Software repository
-RUN apt update
-
-# Install base software
-RUN apt install -y screen nano curl wget
+RUN apt-get update
+RUN apt-get install -y screen nano wget
 
 # Install networking tools
-RUN apt install -y vsftpd
+RUN apt-get install -y vsftpd
 COPY /config/vsftpd.conf /etc/vsftpd.conf
 
 # Add FTP user
@@ -47,6 +47,9 @@ USER ${ftp_username}
 # Install SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
 
+# Install 7 Days to Die
+RUN ${server_folder}/steamcmd.sh +force_install_dir ${days7_folder} +login anonymous  +app_update 294420 validate +quit
+
 # Expose game ports
 EXPOSE 26900-26903/tcp
 EXPOSE 26900-26903/udp
@@ -59,9 +62,8 @@ EXPOSE 40000-50000/tcp
 # Set the working directory to the server directory
 WORKDIR ${server_folder}
 
-# Copy files
+# Copy serverconfig.xml
 COPY /config/serverconfig.xml ./serverconfig.xml
-COPY /install_7days.sh ./install_7days.sh
 
 # Start the 7 Days to Die server with the desired command
-CMD ["./install_7days.sh"]
+CMD ["./startserver.sh", "-configfile=serverconfig.xml"]
