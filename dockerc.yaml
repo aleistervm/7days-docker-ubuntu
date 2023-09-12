@@ -1,0 +1,24 @@
+volumes:
+  my_7days_server:
+
+services:
+  7days-server:
+    image: 7days-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "26900:26900"
+      - "26901:26901"
+      - "26902:26902"
+      - "26903:26903"
+      - "26900:26900/udp"
+      - "26901:26901/udp"
+      - "26902:26902/udp"
+      - "26903:26903/udp"
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+      - "40000-50000:40000-50000"
+    volumes:
+      - my_7days_server: /gameserver

@@ -68,4 +68,4 @@ COPY d7_user.sh ./d7_user.sh
 COPY d7_server_install.sh ./d7_server_install.sh
 
 # Prompt for user input
-CMD ["./d7_user.sh"]
+ENTRYPOINT ["./d7_user.sh"]
