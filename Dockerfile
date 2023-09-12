@@ -19,7 +19,7 @@ ENV server_folder /gameserver
 ENV days7_folder /gameserver/7days
 
 RUN apt-get update
-RUN apt-get install -y screen nano wget
+RUN apt-get install -y screen nano curl wget
 
 # Install networking tools
 RUN apt-get install -y vsftpd
