@@ -35,11 +35,14 @@ RUN dpkg --add-architecture i386 && \
     apt update && \
     apt install -y lib32gcc-s1 libsdl2-2.0-0:i386
 
+# Create the server folder
+RUN mkdir -p ${days7_folder}
+
+# Give the user full access to this folder
+RUN chmod -R u+rwx ${server_folder} && chown -R ${ftp_username}:${ftp_username} ${server_folder}
+
 # Switch to the newly created user
 USER ${ftp_username}
-
-# Create the server folder
-RUN sudo mkdir -p ${days7_folder}
 
 # Install SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
