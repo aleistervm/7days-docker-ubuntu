@@ -6,7 +6,7 @@
 sudo apt update
 
 # If you want to install any upgrades
-sudo apt upgrade
+# sudo apt upgrade
 
 
 # ----- INSTALL DOCKER -----
