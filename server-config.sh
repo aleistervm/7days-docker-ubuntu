@@ -61,6 +61,12 @@ echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
 echo 'vm.vfs_cache_pressure=50' | sudo tee -a /etc/sysctl.conf
 
 
+# ----- GIT - PULL PROJECT FILES -----
+
+# Clone the repository
+git clone https://github.com/aleistervm/7days-docker-ubuntu.git
+
+
 # ----- LAST STEP -----
 
 # Reboot the system
