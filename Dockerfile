@@ -39,7 +39,7 @@ RUN dpkg --add-architecture i386 && \
 USER ${ftp_username}
 
 # Create the server folder
-RUN mkdir -p ${days7_folder}
+RUN sudo mkdir -p ${days7_folder}
 
 # Install SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
