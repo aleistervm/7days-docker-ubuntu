@@ -23,7 +23,7 @@ sudo docker build -t 7days-server:latest .
 Run the docker container with a volume. <br/>
 NOTE: The `/gameserver` below must match the `server_folder` defined in the `Dockerfile`.
 ```
-sudo docker-compose -f dockerc.yaml up -it
+sudo docker compose -f dockerc.yaml up
 ```
 
 ### Optional: Check on the container
