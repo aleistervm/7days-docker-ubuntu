@@ -2,11 +2,28 @@
 .vs/
 .idea/
 
-# Mac
-.DS_Store
-
 # Node
 node_modules/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
 
 # Git
 .git
