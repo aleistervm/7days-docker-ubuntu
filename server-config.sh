@@ -55,12 +55,12 @@ sudo cp /etc/fstab /etc/fstab.bak
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # Adjust swappiness and cache pressure
-sudo sysctl vm.swappiness=10
-sudo sysctl vm.vfs_cache_pressure=50
+sudo sysctl vm.swappiness=50
+sudo sysctl vm.vfs_cache_pressure=100
 
 # Add these lines to the bottom of /etc/sysctl.conf
-echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
-echo 'vm.vfs_cache_pressure=50' | sudo tee -a /etc/sysctl.conf
+echo 'vm.swappiness=50' | sudo tee -a /etc/sysctl.conf
+echo 'vm.vfs_cache_pressure=100' | sudo tee -a /etc/sysctl.conf
 
 
 # ----- GIT - PULL PROJECT FILES -----
