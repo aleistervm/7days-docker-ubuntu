@@ -4,7 +4,11 @@
 # Monitor logs with: docker exec -it 7days-server tail -f /gameserver/install_7days.log
 exec >> install_7days.log 2>&1
 
-# Copy the files from Steam
+# Start the FTP server
+sudo systemctl enable vsftpd
+sudo systemctl start vsftpd
+
+# Install the 7 Days server from Steam
 ./steamcmd.sh +force_install_dir /7days +login anonymous +app_update 294420 validate +quit
 
 # Copy the serverconfig template

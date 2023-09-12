@@ -41,14 +41,14 @@ RUN mkdir -p ${days7_folder}
 # Give the user full access to this folder
 RUN chmod -R u+rwx ${server_folder} && chown -R ${ftp_username}:${ftp_username} ${server_folder}
 
+# Add user as sudoer
+RUN usermod -aG sudo ${ftp_username}
+
 # Switch to the newly created user
 USER ${ftp_username}
 
-# Install SteamCMD
+# Download and extract SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - -C ${server_folder}
-
-# Install 7 Days to Die
-RUN ${server_folder}/steamcmd.sh +force_install_dir ${days7_folder} +login anonymous +app_update 294420 validate +quit
 
 # Expose game ports
 EXPOSE 26900-26903/tcp
