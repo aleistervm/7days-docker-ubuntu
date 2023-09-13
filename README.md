@@ -27,6 +27,10 @@ Docker - Windows:
 ```
 docker run -it --name 7days-server -p 26900-26903:26900-26903/tcp -p 26900-26903:26900-26903/udp -p 8080-8082:8080-8082/tcp -p 20-21:20-21/tcp -p 40000-40024:40000-40024/tcp -v my_7days_server:/gameserver 7days-server:latest
 ```
+Windows FTP:
+```
+docker run -d --name ftp-server -p 20-21:20-21 -p 40000-40024:40000-40024 -v my_7days_server:/gameserver ftp-server:latest
+```
 Docker - Linux:
 ```
 sudo docker run -it --name 7days-server \
@@ -47,6 +51,10 @@ sudo docker compose -f dockerc.yaml up
 If you need to connect to the container, use the following command:
 ```
 sudo docker exec -it 7days-server /bin/bash
+```
+To exit a Docker container without stopping it, _do not use Ctrl+C_. Instead, you exit with:
+```
+Ctrl+P Ctrl+Q
 ```
 
 ### Optional: To clear everything and restart
