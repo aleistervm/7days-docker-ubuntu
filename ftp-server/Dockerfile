@@ -9,20 +9,21 @@ ENV ftp_password password
 
 ENV volume_folder /gameserver
 
+RUN apt update
+
 # Install requirements
 # https://packages.ubuntu.com/focal/vsftpd
-RUN apt install -y debconf libc6 libcap2 libpam-modules libpam0g libssl1.1 libwrap0 lsb-base netbase procps
-RUN apt install -y ftp
-
-# Install vsftpd
-RUN apt install -y vsftpd
+RUN apt install -y debconf libc6 libcap2 libpam-modules libpam0g netbase procps && \
+    apt install -y ftp && \
+    apt install -y vsftpd
 
 # Make sure vsftpd can be executed
 RUN chmod +x /etc/init.d/vsftpd
 
 # Create config directories
-RUN mkdir -p /etc/vsftpd
+# RUN mkdir -p /etc/vsftpd
 RUN mkdir -p /etc/pam.d
+RUN mkdir -p ${volume_folder}
 
 # Overwrite default conf with ours
 COPY ./config/vsftpd.conf       /etc/vsftpd.conf

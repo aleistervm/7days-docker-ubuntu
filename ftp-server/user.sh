@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Start the FTP server
-/etc/init.d/vsftpd start
+# /etc/init.d/vsftpd start
+/usr/sbin/vsftpd /etc/vsftpd.conf
 
 # Check the exit status of the previous command
 if [ $? -ne 0 ]; then
