@@ -31,7 +31,11 @@ COPY ./config/pam.d/vsftpd      /etc/pam.d/vsftpd
 
 # Add FTP user
 RUN useradd -m -s /bin/bash ${ftp_username}
+
+# Set the user's home directory
 RUN usermod -d ${volume_folder} ${ftp_username}
+
+# Set the user's password
 RUN echo "${ftp_username}:${ftp_password}" | chpasswd
 
 # Add user as sudoer
@@ -40,9 +44,18 @@ RUN usermod -aG sudo ${ftp_username}
 # Give the FTP user full access to server folder
 RUN chmod -R u+rwx ${volume_folder} && chown -R ${ftp_username}:${ftp_username} ${volume_folder}
 
+# Provide access to folder required by vsftpd
+RUN mkdir -p /var/run/vsftpd/empty
+RUN chmod -R 755 /var/run/vsftpd
+
+# Setup vsftpd log file
+RUN mkdir -p /var/log
+RUN touch /var/log/vsftpd.log
+RUN chmod 666 /var/log/vsftpd.log
+
 # Expose FTP
 EXPOSE 20-21/tcp
-EXPOSE 40000-50000/tcp
+EXPOSE 40000-40024/tcp
 
 # Set the working directory to the server directory
 WORKDIR ${volume_folder}
