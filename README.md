@@ -40,7 +40,7 @@ If you have not modified the provided `serverconfig.xml` or `vsftpd.conf`, these
 - 26900 - 26903 (TCP & UDP)
 - 8080 - 8082 (TCP)
 - 20 - 21 (TCP)
-- 40000 - 50000 (TCP)
+- 40000 - 40010 (TCP)
 
 ### Local Machine
 If you are running this 7 Days Dedicated Docker server on a computer at your home, you need to

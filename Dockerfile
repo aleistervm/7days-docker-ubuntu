@@ -57,7 +57,7 @@ EXPOSE 8080-8082/tcp
 
 # Expose FTP
 EXPOSE 20-21/tcp
-EXPOSE 40000-50000/tcp
+EXPOSE 40000-40010/tcp
 
 # Set the working directory to the server directory
 WORKDIR ${server_folder}
