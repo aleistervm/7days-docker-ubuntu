@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # 7DTD Game Server
+  7dtd-server:
+    build: ./server-7days
+    container_name: 7dtd-server
+    ports:
+      - "26900:26903/tcp"
+      - "26900:26903/udp"
+      - "8080:8082/tcp"
+    volumes:
+      # Named Volume for game saves
+      - 7dtd-data:/data
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  # SFTP server
+  sftp-server:
+    # This tells Docker Compose to build the image from the sftp-server directory
+    build: ./sftp-server
+    container_name: 7dtd-sftp
+    ports:
+      # Map host port 2222 to container port 22 (SSH/SFTP)
+      # We use 2222 to avoid conflict with the host's own SSH service.
+      - "2222:22"
+    volumes:
+      - 7dtd-data:/home/serveradmin/data
+    environment:
+      # Set the credentials for the user our entrypoint script will create
+      - SFTP_USER=serveradmin
+      - SFTP_PASS=a-very-secure-password
+      - SFTP_UID=1000 # Must match the UID your game server runs as
+      - SFTP_GID=1000 # Must match the GID your game server runs as
+    restart: unless-stopped
+
+volumes:
+  7dtd-data:
